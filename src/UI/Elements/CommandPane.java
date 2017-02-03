@@ -1,0 +1,24 @@
+////////////////////////////////////////////////
+// URSS-Telemetry-Manager
+// Chris Dalke
+////////////////////////////////////////////////
+// Module: CommandPane
+////////////////////////////////////////////////
+
+package UI.Elements;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+
+public class CommandPane extends JPanel {
+   public CommandPane() {
+   
+      TitledBorder title = BorderFactory.createTitledBorder("Commands");
+      setBorder(title);
+   }
+   
+}
+
+////////////////////////////////////////////////
+// End of code
+////////////////////////////////////////////////

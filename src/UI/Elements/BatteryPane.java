@@ -1,0 +1,23 @@
+////////////////////////////////////////////////
+// URSS-Telemetry-Manager
+// Chris Dalke
+////////////////////////////////////////////////
+// Module: BatteryPane
+////////////////////////////////////////////////
+
+package UI.Elements;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+
+public class BatteryPane extends JPanel {
+   public BatteryPane() {
+      TitledBorder title = BorderFactory.createTitledBorder("Battery Monitor");
+      setBorder(title);
+   }
+   
+}
+
+////////////////////////////////////////////////
+// End of code
+////////////////////////////////////////////////

@@ -32,7 +32,7 @@ public class Log extends JPanel {
       textArea.setEditable(false);
       add(scrollPane, BorderLayout.CENTER);
       scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-      scrollPane.setPreferredSize(new Dimension(0,200));
+      scrollPane.setPreferredSize(new Dimension(0,140));
    
       PrintStream con=new PrintStream(new TextAreaOutputStream(textArea));
       System.setOut(con);

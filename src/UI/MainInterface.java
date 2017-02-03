@@ -15,10 +15,9 @@ import java.awt.*;
 public class MainInterface extends javax.swing.JFrame {
    
    JMenuBar menuBar;
-   BatteryPane batteryPane;
+   DataPane dataPane;
    CommandPane commandPane;
    IndicatorPane indicatorPane;
-   GraphPane graphPane;
    BottomPane bottomPane;
    
    
@@ -52,17 +51,14 @@ public class MainInterface extends javax.swing.JFrame {
    
       setLayout(new BorderLayout());
       
-      
-      batteryPane = new BatteryPane();
       commandPane = new CommandPane();
       indicatorPane = new IndicatorPane();
-      graphPane = new GraphPane();
       bottomPane = new BottomPane();
+      dataPane = new DataPane();
       
       add(indicatorPane,BorderLayout.NORTH);
-      add(graphPane,BorderLayout.CENTER);
-      add(batteryPane,BorderLayout.EAST);
-      add(commandPane,BorderLayout.WEST);
+      add(dataPane,BorderLayout.CENTER);
+      add(commandPane,BorderLayout.EAST);
       add(bottomPane,BorderLayout.SOUTH);
    
    

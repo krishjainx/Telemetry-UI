@@ -1,0 +1,25 @@
+{
+  "name": "urss-telemetry-ui",
+  "version": "1.0.0",
+  "description": "The Telemetry UI for Rochester Solar Splash.",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/URSolarSplash/Telemetry-UI.git"
+  },
+  "author": "Chris Dalke & Andrew Gutierrez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/URSolarSplash/Telemetry-UI/issues"
+  },
+  "homepage": "https://github.com/URSolarSplash/Telemetry-UI#readme",
+  "devDependencies": {
+    "electron": "^2.0.4"
+  },
+  "dependencies": {
+    "electron-reload": "^1.2.5"
+  }
+}

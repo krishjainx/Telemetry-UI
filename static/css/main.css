@@ -16,11 +16,12 @@ html {
 html, body {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 
 body {
-    padding-top:50px;
+    padding-top:100px;
 }
 
 .header {
@@ -45,4 +46,10 @@ body {
     overflow: hidden;
     padding: 10px;
     text-align: center;
+}
+
+[id^=section-] {
+    width: 100px;
+    height: 100px;
+    background-color: red;
 }

@@ -1,5 +1,6 @@
 const {app, BrowserWindow} = require('electron')
 require('electron-reload')(__dirname);
+var Chart = require('chart.js');
 
 let win
 

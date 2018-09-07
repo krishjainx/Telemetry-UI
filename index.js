@@ -6,11 +6,11 @@ let win
 
 function createWindow () {
     // Create the browser window.
-    win = new BrowserWindow({width: 1024, height: 768})
+    win = new BrowserWindow({width: 1024, height: 768, minWidth: 800, minHeight: 600})
 
     win.loadFile('index.html')
 
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     win.on('closed', () => {
       win = null

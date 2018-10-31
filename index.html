@@ -8,6 +8,7 @@
         <script src="static/js/tabs.js" type="text/javascript"></script>
         <script src="static/js/modal.js" type="text/javascript"></script>
         <script src="static/js/index.js" type="text/javascript"></script>
+        <script src="static/js/dragscroll.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="modal-overlay">
@@ -35,26 +36,117 @@
 
 
         <div id="side-panel">
-            <div class="panel">
-                <p>Raw Data</p>
-                <div class="data-scroller">
-                    Raw Data
+            <div class="panel dragscroll">
+                <div class="status-pane">
+                    <div class="status-bar-toggle"></div>
+                    <h1>Statistics</h1>
+                    <p>numDataPoints<span class="data-point-raw" id="stats.numDataPoints"></span></p>
+                    <p>hasRadio<span class="data-point-raw" id="stats.hasRadio"></span></p>
+                    <p>numRadioPackets<span class="data-point-raw" id="stats.numRadioPackets"></span></p>
+                    <p>numActiveDevices<span class="data-point-raw" id="stats.numActiveDevice"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle"></div>
+                    <h1>Debug</h1>
+                    <p>debug1<span class="data-point-raw" id="telemetry.debug1"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle"></div>
+                    <h1>Victron</h1>
+                    <p>bmvTimeRemaining<span class="data-point-raw" id="telemetry.bmvTimeRemaining"></span></p>
+                    <p>bmvConsumedAh<span class="data-point-raw" id="telemetry.bmvConsumedAh"></span></p>
+                    <p>bmvShuntVoltage<span class="data-point-raw" id="telemetry.bmvShuntVoltage"></span></p>
+                    <p>bmvShuntCurrent<span class="data-point-raw" id="telemetry.bmvShuntCurrent"></span></p>
+                    <p>bmvStateOfCharge<span class="data-point-raw" id="telemetry.bmvStateOfCharge"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle" id="status-bar-toggle-motor"></div>
+                    <h1>Motor</h1>
+                    <p>motorTemp<span class="data-point-raw" id="telemetry.motorTemp"></span></p>
+                    <p>motorRpm<span class="data-point-raw" id="telemetry.motorRpm"></span></p>
+                    <p>propRpm<span class="data-point-raw" id="telemetry.propRpm"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle" id="status-bar-toggle-throttle"></div>
+                    <h1>Throttle</h1>
+                    <p>throttlePosition<span class="data-point-raw" id="telemetry.throttlePosition"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle" id="status-bar-toggle-battery"></div>
+                    <h1>Battery</h1>
+                    <p>packVoltage<span class="data-point-raw" id="telemetry.batteryPackVoltage"></span></p>
+                    <p>cellVoltage0<span class="data-point-raw" id="telemetry.batteryCellVoltage0"></span></p>
+                    <p>cellVoltage1<span class="data-point-raw" id="telemetry.batteryCellVoltage1"></span></p>
+                    <p>cellVoltage2<span class="data-point-raw" id="telemetry.batteryCellVoltage2"></span></p>
+                    <p>cellVoltage3<span class="data-point-raw" id="telemetry.batteryCellVoltage3"></span></p>
+                    <p>cellVoltage4<span class="data-point-raw" id="telemetry.batteryCellVoltage4"></span></p>
+                    <p>cellVoltage5<span class="data-point-raw" id="telemetry.batteryCellVoltage5"></span></p>
+                    <p>cellVoltage6<span class="data-point-raw" id="telemetry.batteryCellVoltage6"></span></p>
+                    <p>cellVoltage7<span class="data-point-raw" id="telemetry.batteryCellVoltage7"></span></p>
+                    <p>cellVoltage8<span class="data-point-raw" id="telemetry.batteryCellVoltage8"></span></p>
+                    <p>busTemp1<span class="data-point-raw" id="telemetry.batteryBusTemp1"></span></p>
+                    <p>busTemp2<span class="data-point-raw" id="telemetry.batteryBusTemp2"></span></p>
+                    <p>busTemp3<span class="data-point-raw" id="telemetry.batteryBusTemp3"></span></p>
+                    <p>busTemp4<span class="data-point-raw" id="telemetry.batteryBusTemp4"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle" id="status-bar-toggle-vesc"></div>
+                    <h1>VESC</h1>
+                    <p>mosfetTemp<span class="data-point-raw" id="telemetry.vescMosfetTemp"></span></p>
+                    <p>inCurrent<span class="data-point-raw" id="telemetry.vescInCurrent"></span></p>
+                    <p>outCurrent<span class="data-point-raw" id="telemetry.vescOutCurrent"></span></p>
+                    <p>dutyCycle<span class="data-point-raw" id="telemetry.vescDutyCycle"></span></p>
+                    <p>rpm<span class="data-point-raw" id="telemetry.vescRpm"></span></p>
+                    <p>inVoltage<span class="data-point-raw" id="telemetry.vescInVoltage"></span></p>
+                    <p>fault<span class="data-point-raw" id="telemetry.vescFault"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle" id="status-bar-toggle-alltrax"></div>
+                    <h1>AllTrax</h1>
+                    <p>diodeTemp<span class="data-point-raw" id="telemetry.alltraxDiodeTemp"></span></p>
+                    <p>inVoltage<span class="data-point-raw" id="telemetry.alltraxInVoltage"></span></p>
+                    <p>inCurrent<span class="data-point-raw" id="telemetry.alltraxInCurrent"></span></p>
+                    <p>outCurrent<span class="data-point-raw" id="telemetry.alltraxOutCurrent"></span></p>
+                    <p>dutyCycle<span class="data-point-raw" id="telemetry.alltraxDutyCycle"></span></p>
+                    <p>errorCode<span class="data-point-raw" id="telemetry.alltraxErrorCode"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle" id="status-bar-toggle-gyro"></div>
+                    <h1>Gyro</h1>
+                    <p>trimAngle<span class="data-point-raw" id="telemetry.gyroTrimAngle"></span></p>
+                    <p>rollAngle<span class="data-point-raw" id="telemetry.gyroRollAngle"></span></p>
+                    <p>yawAngle<span class="data-point-raw" id="telemetry.gyroYawAngle"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle" id="status-bar-toggle-gps"></div>
+                    <h1>GPS</h1>
+                    <p>timestamp<span class="data-point-raw" id="telemetry.gpsTimestamp"></span></p>
+                    <p>speed<span class="data-point-raw" id="telemetry.gpsSpeed"></span></p>
+                    <p>heading<span class="data-point-raw" id="telemetry.gpsHeading"></span></p>
+                    <p>latitude<span class="data-point-raw" id="telemetry.gpsLatitude"></span></p>
+                    <p>longitude<span class="data-point-raw" id="telemetry.gpsLongitude"></span></p>
+                    <p>numSatellites<span class="data-point-raw" id="telemetry.gpsNumSatellites"></span></p>
                 </div>
             </div>
         </div>
 
         <div id="tab-panel">
-            <div id="dashboard-tab" class="tab tab-active">Dashboard</div>
+            <div id="dashboard-tab" class="tab tab-active">Dashboard
+                <div id="test-rpc">
+                </div>
+            </div>
             <div id="power-tab" class="tab tab-inactive">Power</div>
             <div id="drivetrain-tab" class="tab tab-inactive">Drivetrain</div>
             <div id="gps-tab" class="tab tab-inactive">GPS</div>
             <div id="data-streams-tab" class="tab tab-inactive">Data Streams</div>
+
         </div>
 
         <div id="main-panel">
             <div class="panel">
                 <div id="dashboard-tab-pane" class="tab-pane">
                     <h1>Dashboard</h1>
+                    <span id="telemetry">telemetry</span>
                 </div>
                 <div id="power-tab-pane" class="tab-pane">
                     <h1>Power</h1>
@@ -73,9 +165,9 @@
 
         <div id="bottom-panel">
             <div class="panel">
-                <p id="status">Status: No Messages</p>
-                <p id="status">No Data Received</p>
-                <p id="status">No Radio Connection</p>
+                <p class="status-bar-item" id="status-messages">Status: No Messages</p>
+                <p class="status-bar-item"id="status-data">No Data Received</p>
+                <p class="status-bar-item" id="status-radio">No Radio Connection</p>
             </div>
         </div>
     </body>

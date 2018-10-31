@@ -22,6 +22,7 @@
   "dependencies": {
     "chart.js": "^2.7.2",
     "electron-reload": "^1.2.5",
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "zerorpc": "^0.9.8"
   }
 }

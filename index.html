@@ -5,6 +5,7 @@
         <title>URSS Telemetry Monitor</title>
         <link rel="stylesheet" href="static/css/main.css">
         <script>window.$ = window.jQuery = require('jquery');</script>
+        <script src="static/js/Chart.bundle.js"></script>
         <script src="static/js/tabs.js" type="text/javascript"></script>
         <script src="static/js/modal.js" type="text/javascript"></script>
         <script src="static/js/index.js" type="text/javascript"></script>
@@ -44,11 +45,6 @@
                     <p>hasRadio<span class="data-point-raw" id="stats.hasRadio"></span></p>
                     <p>numRadioPackets<span class="data-point-raw" id="stats.numRadioPackets"></span></p>
                     <p>numActiveDevices<span class="data-point-raw" id="stats.numActiveDevice"></span></p>
-                </div>
-                <div class="status-pane">
-                    <div class="status-bar-toggle"></div>
-                    <h1>Debug</h1>
-                    <p>debug1<span class="data-point-raw" id="telemetry.debug1"></span></p>
                 </div>
                 <div class="status-pane">
                     <div class="status-bar-toggle"></div>
@@ -147,8 +143,33 @@
         <div id="main-panel">
             <div class="panel">
                 <div id="dashboard-tab-pane" class="tab-pane">
-                    <h1>Dashboard</h1>
-                    <span id="telemetry">telemetry</span>
+                    <div class="dashboardChartPane">
+                        <canvas id="dashboardChart"></canvas>
+                    </div>
+                    <div class="dashboardVoltage dashboardIndicator">
+                        <h3>Voltage</h3>
+                        <h1><span id="telemetry.bmvVoltage">---</span> V</h1>
+                        <span>min: <span id="telemetry.bmvVoltage.min">---</span></span> /
+                        <span>max: <span id="telemetry.bmvVoltage.max">---</span></span>
+                    </div>
+                    <div class="dashboardCurrent dashboardIndicator">
+                        <h3>Current</h3>
+                        <h1><span id="telemetry.bmvCurrent">---</span> A</h1>
+                        <span>min: <span id="telemetry.bmvCurrent.min">---</span></span> /
+                        <span>max: <span id="telemetry.bmvCurrent.max">---</span></span>
+                    </div>
+                    <div class="dashboardRpm dashboardIndicator">
+                        <h3>Motor RPM</h3>
+                        <h1><span id="telemetry.motorRpm"></span></h1>
+                        <span>min: <span id="telemetry.motorRpm.min">---</span></span> /
+                        <span>max: <span id="telemetry.motorRpm.max">---</span></span>
+                    </div>
+                    <div class="dashboardSpeed dashboardIndicator">
+                        <h3>GPS Speed</h3>
+                        <h1><span id="telemetry.gpsSpeed">---</span></h1>
+                        <span>min: <span id="telemetry.gpsSpeed.min">---</span></span>
+                        <span>max: <span id="telemetry.gpsSpeed.max">---</span></span>
+                    </div>
                 </div>
                 <div id="power-tab-pane" class="tab-pane">
                     <h1>Power</h1>

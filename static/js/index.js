@@ -21,7 +21,8 @@ $(function(){
     statusBarSetState($("#status-bar-toggle-battery"),true)
     statusBarSetState($("#status-bar-toggle-throttle"),true)
 
-    setupChart();
+    setupChart1();
+    setupChart2();
 
     setInterval(function() {
         $.getJSON("http://localhost:5000/live", function(data){
@@ -53,7 +54,11 @@ $(function(){
             }
             updateStatusBar();
         });
-  }, 500);
+        $.getJSON("http://localhost:5000/alarms", function(data){
+            alarms = data;
+            updateAlarms();
+        });
+  }, 250);
 });
 
 function statusBarSetState(object, state){
@@ -108,9 +113,10 @@ function updateStatusBar(){
 }
 
 var dashboardChart;
+var dashboardChart2;
 var chartX = 0;
-function setupChart(){
-    var ctx = document.getElementById("dashboardChart").getContext('2d');
+function setupChart1(){
+    var ctx = document.getElementById("dashboardChart1").getContext('2d');
     data = []
     dashboardChart = new Chart(ctx, {
         type: 'line',
@@ -127,6 +133,51 @@ function setupChart(){
                 data: [],
                 label: "Battery Current",
                 borderColor: "#00ffff",
+                fill: false,
+                pointRadius: 0
+            },{
+                data: [],
+                label: "Battery Current",
+                borderColor: "#ff00ff",
+                fill: false,
+                pointRadius: 0
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            steppedLine: false,
+            elements: {
+                line: {
+                    tension: 0, // disables bezier curves
+                }
+            }
+        }
+    });
+}
+function setupChart2(){
+    var ctx = document.getElementById("dashboardChart2").getContext('2d');
+    data = []
+    dashboardChart2 = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                data: [],
+                label: "Battery Voltage",
+                borderColor: "#ffff00",
+                fill: false,
+                pointRadius: 0,
+                cubicInterpolationMode: "monotone"
+            },{
+                data: [],
+                label: "Battery Current",
+                borderColor: "#00ffff",
+                fill: false,
+                pointRadius: 0
+            },{
+                data: [],
+                label: "Battery Current",
+                borderColor: "#ff00ff",
                 fill: false,
                 pointRadius: 0
             }]
@@ -151,6 +202,9 @@ function parseChartData(key, value){
     if (key == "bmvCurrent"){
         addData(1,chartX,value);
     }
+    if (key == "windSpeed"){
+        addData(2,chartX,value);
+    }
 }
 
 var maxLength = 20;
@@ -164,4 +218,44 @@ function addData(datasetIndex, label, data) {
     dashboardChart.data.labels.push(label);
     dashboardChart.data.datasets[datasetIndex].data.push(data);
     dashboardChart.update();
+}
+
+var alarms = {};
+var firstAlarmUpdate = true;
+function updateAlarms(){
+    if (firstAlarmUpdate){
+        $("#alarm-container").html("")
+        for (var alarmKey in alarms) {
+            if (alarms.hasOwnProperty(alarmKey)) {
+                $("#alarm-container").append("<div class=\"alarm\" id=\"alarm-"+alarmKey+"\"></div>")
+            }
+        }
+        firstAlarmUpdate = false;
+    }
+    for (var alarmKey in alarms) {
+        if (alarms.hasOwnProperty(alarmKey)) {
+            $("#alarm-"+alarmKey).text(alarms[alarmKey]);
+        }
+    }
+}
+
+// Handle power budget scaling
+$(function(){
+    $("#power-tab").click(function(){doPowerBudgetResize();});
+    $(window).resize(function(){
+        doPowerBudgetResize();
+    });
+    doPowerBudgetResize();
+
+});
+
+function doPowerBudgetResize(){
+    var scale = Math.min(
+      $("#power-budget-scaleable-wrapper").outerWidth() / $("#power-budget-canvas").outerWidth(),
+      $("#power-budget-scaleable-wrapper").outerHeight() / $("#power-budget-canvas").outerHeight()
+    );
+
+    $("#power-budget-canvas").css({
+      transform: "translate(-50%, -50%) " + "scale(" + scale + ")"
+    });
 }

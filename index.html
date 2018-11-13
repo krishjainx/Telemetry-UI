@@ -125,6 +125,15 @@
                     <p>longitude<span class="data-point-raw" id="telemetry.gpsLongitude"></span></p>
                     <p>numSatellites<span class="data-point-raw" id="telemetry.gpsNumSatellites"></span></p>
                 </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle" id="status-bar-toggle-gps"></div>
+                    <h1>Wind Sensor</h1>
+                    <p>windSpeed<span class="data-point-raw" id="telemetry.windSpeed"></span></p>
+                    <p>windAverageSpeed<span class="data-point-raw" id="telemetry.windAverageSpeed"></span></p>
+                    <p>windWarningState<span class="data-point-raw" id="telemetry.windWarningState"></span></p>
+                    <p>windTemperature<span class="data-point-raw" id="telemetry.windTemperature"></span></p>
+                    <p>windPercentHumidity<span class="data-point-raw" id="telemetry.windPercentHumidity"></span></p>
+                </div>
             </div>
         </div>
 
@@ -136,16 +145,20 @@
             <div id="power-tab" class="tab tab-inactive">Power</div>
             <div id="drivetrain-tab" class="tab tab-inactive">Drivetrain</div>
             <div id="gps-tab" class="tab tab-inactive">GPS</div>
-            <div id="data-streams-tab" class="tab tab-inactive">Data Streams</div>
+            <div id="alarms-tab" class="tab tab-inactive">Alarms</div>
 
         </div>
 
         <div id="main-panel">
             <div class="panel">
                 <div id="dashboard-tab-pane" class="tab-pane">
-                    <div class="dashboardChartPane">
-                        <canvas id="dashboardChart"></canvas>
+                    <div class="dashboardChartPane1">
+                        <canvas id="dashboardChart1"></canvas>
                     </div>
+                    <div class="dashboardChartPane2">
+                        <canvas id="dashboardChart2"></canvas>
+                    </div>
+
                     <div class="dashboardVoltage dashboardIndicator">
                         <h3>Voltage</h3>
                         <h1><span id="telemetry.bmvVoltage">---</span> V</h1>
@@ -160,19 +173,35 @@
                     </div>
                     <div class="dashboardRpm dashboardIndicator">
                         <h3>Motor RPM</h3>
-                        <h1><span id="telemetry.motorRpm"></span></h1>
+                        <h1><span id="telemetry.motorRpm">---</span> rpm</h1>
                         <span>min: <span id="telemetry.motorRpm.min">---</span></span> /
                         <span>max: <span id="telemetry.motorRpm.max">---</span></span>
                     </div>
                     <div class="dashboardSpeed dashboardIndicator">
                         <h3>GPS Speed</h3>
-                        <h1><span id="telemetry.gpsSpeed">---</span></h1>
+                        <h1><span id="telemetry.gpsSpeed">---</span> mph</h1>
                         <span>min: <span id="telemetry.gpsSpeed.min">---</span></span>
                         <span>max: <span id="telemetry.gpsSpeed.max">---</span></span>
                     </div>
                 </div>
                 <div id="power-tab-pane" class="tab-pane">
-                    <h1>Power</h1>
+                    <div id="power-budget-scaleable-wrapper">
+                        <div id="power-budget-canvas">
+                            <div id="power-budget-overlay"></div>
+                            <div id="power-budget-boat"></div>
+                            <div id="power-budget-gearbox" class="power-budget-box"><h2>Gearbox</h2></div>
+                            <div id="power-budget-motor" class="power-budget-box"><h2>Motor</h2></div>
+                            <div id="power-budget-prop" class="power-budget-box"><h2>Propeller</h2></div>
+                            <div id="power-budget-motor-controller" class="power-budget-box"><h2>Motor Controller</h2></div>
+                            <div id="power-budget-battery" class="power-budget-box"><h2>Battery</h2></div>
+                            <div id="power-budget-solar-charger" class="power-budget-box"><h2>Solar Charger</h2></div>
+                            <div id="power-budget-solar-panel" class="power-budget-box"><h2>Solar Panel</h2></div>
+                            <div id="power-budget-outline-drivetrain" class="power-budget-outline"><h2>Drivetrain</h2></div>
+
+                        </div>
+                    </div>
+                    <h1>Power Budget</h1>
+
                 </div>
                 <div id="drivetrain-tab-pane" class="tab-pane">
                     <h1>Drivetrain</h1>
@@ -180,8 +209,11 @@
                 <div id="gps-tab-pane" class="tab-pane">
                     <h1>GPS</h1>
                 </div>
-                <div id="data-streams-tab-pane" class="tab-pane">
-                    <h1>Data Streams</h1>
+                <div id="alarms-tab-pane" class="tab-pane">
+                    <h1>Alarms</h1>
+                    <div id="alarm-container">
+                        <span id="alarm-status">Retrieving Alarm Data...</span>
+                    </div>
                 </div>
             </div>
         </div>

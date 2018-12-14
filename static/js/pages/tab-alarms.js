@@ -5,21 +5,21 @@ function updateAlarms(){
     if (firstAlarmUpdate){
         $("#alarm-container").html("")
         alarms = Telemetry.getAllAlarms();
-        for (var alarmKey in alarms) {
-            if (alarms.hasOwnProperty(alarmKey)) {
-                $("#alarm-container").append("<div class=\"alarm\" id=\"alarm-"+alarmKey+"\"></div>")
+        for (var alarmId in alarms) {
+            if (alarms.hasOwnProperty(alarmId)) {
+                $("#alarm-container").append("<div class=\"alarm\" id=\"alarm-"+alarmId+"\"></div>")
             }
         }
         firstAlarmUpdate = false;
     }
     alarms = Telemetry.getAllAlarms();
-    for (var alarmKey in alarms) {
-        if (alarms.hasOwnProperty(alarmKey)) {
-            $("#alarm-"+alarmKey).html("<h3>"+alarmKey+"</h3><span>state = "+alarms[alarmKey].state+", value = ["+Telemetry.round(alarms[alarmKey].value,4)+"], alarm range = ["+alarms[alarmKey].range_min+","+alarms[alarmKey].range_max+"]</span>");
-            if (alarms[alarmKey].state == true){
-                $("#alarm-"+alarmKey).removeClass("alarm-inactive").addClass("alarm-active");
+    for (var alarmId in alarms) {
+        if (alarms.hasOwnProperty(alarmId)) {
+            $("#alarm-"+alarmId).html("<h3>"+alarms[alarmId].desc+"</h3><span>state = "+alarms[alarmId].state+", value = ["+Telemetry.round(alarms[alarmId].value,4)+"], alarm range = ["+alarms[alarmId].range_min+","+alarms[alarmId].range_max+"]</span>");
+            if (alarms[alarmId].state == true){
+                $("#alarm-"+alarmId).removeClass("alarm-inactive").addClass("alarm-active");
             } else {
-                $("#alarm-"+alarmKey).removeClass("alarm-active").addClass("alarm-inactive");
+                $("#alarm-"+alarmId).removeClass("alarm-active").addClass("alarm-inactive");
             }
         }
     }

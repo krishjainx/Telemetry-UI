@@ -282,7 +282,7 @@ hr {
 
 #modal-window {
     min-width: 400px;
-    min-height: 200px;
+    min-height: 100px;
     background: #323232;
     border-radius:5px;
     border: 1px solid #565656;

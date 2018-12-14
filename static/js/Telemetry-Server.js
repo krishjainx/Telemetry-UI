@@ -57,6 +57,7 @@ class TelemetryServer {
         this.numDataPoints = 0;
         this.numDataPackets = 0;
         this.alarms = null;
+        this.shownModal = false;
 
         // On startup, setup a websockets client which will receive updates from the server
 
@@ -76,7 +77,15 @@ class TelemetryServer {
                 for (var i = 0; i < telemetryInstance.dataCallbacks.length; i++){
                     telemetryInstance.dataCallbacks[i].call();
                 }
-            }).fail(function(){});
+                if (telemetryInstance.shownModal){
+                    hideModal();
+                    telemetryInstance.shownModal = false;
+                }
+            }).fail(function(){
+                // Show an error modal to indicate we need to wait until we are connected to the server.
+                showModal("Telemetry Offline","Connecting to the Telemetry Server. Please wait...<br><br> Please ensure that the telemetry server is running.");
+                telemetryInstance.shownModal = true;
+            });
             $.getJSON("http://localhost:5000/stats", function(data){
                 for (var key in data) {
                     if (data.hasOwnProperty(key)) {

@@ -12,7 +12,7 @@ $(function(){
 // Shows a modal with the provided title and message.
 function showModal(title,message){
     $("#modal-title").text(title);
-    $("#modal-body").text(message);
+    $("#modal-body").html(message);
     $("#modal-overlay").show();
 }
 

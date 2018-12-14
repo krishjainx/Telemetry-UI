@@ -90,14 +90,16 @@ hr {
     left: 2px;
     right: 2px;
     top: 2px;
-    height: 58px;
+    height: 38px;
+    overflow: hidden;
+    padding-left:200px;
 }
 
 #main-panel {
     position: absolute;
     left: 220px;
     right: 2px;
-    top: 88px;
+    top: 68px;
     bottom: 30px;
 
 }
@@ -115,7 +117,7 @@ hr {
     left: 2px;
     width: 216px;
     bottom: 30px;
-    top: 62px;
+    top: 42px;
 }
 
 .data-scroller {
@@ -127,9 +129,10 @@ hr {
     position: absolute;
     left: 220px;
     right: 2px;
-    top: 62px;
+    top: 42px;
     height: 27px;
     z-index: 100;
+    overflow: hidden;
 }
 
 #tab-panel .tab {
@@ -238,58 +241,33 @@ hr {
     height: 100%;
 }
 
-.dashboardChartPane1 {
-    display: block;
-    background-color: #222222;
-    height: 50%;
-    margin-right: 200px;
-    left: 0;
-    top:0;
-    position: relative;
-}
-
-.dashboardChartPane2 {
-    display: block;
-    background-color: #222222;
-    height: 50%;
-    margin-top: 5px;
-    margin-right: 200px;
-    left: 0;
-    bottom:0;
-    position: relative;
-}
-
-
-.dashboardIndicator {
-    background-color: #222222;
+#clock {
     color: white;
-    width:195px;
-    height:95px;
-    right: 0;
+    background-color: #063303;
     position: absolute;
-    padding: 10px;
+    width: 210px;
+    height: 54px;
+    right: 4px;
+    top: 4px;
+    z-index: 100;
+    padding: 4px;
     text-align: center;
 }
 
-.dashboardIndicator h1 {
-    margin-bottom: 3px;
-    margin-top: 4px;
+#urss-header-avatar {
+    background: url('../img/logo-silkscreen.png') center center no-repeat;
+    background-size: 140px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 150px;
+    height: 38px;
+    z-index:100;
+    border-radius:4px;
 }
 
-.dashboardVoltage {
-    top: 0;
-}
-.dashboardCurrent {
-    top: 100px;
-}
-.dashboardRpm {
-    top: 200px;
 
-}
-.dashboardSpeed {
-    top: 300px;
-
-}
+/* Modal window */
 
 #modal-overlay {
     position: absolute;
@@ -300,8 +278,6 @@ hr {
     right: 0;
     bottom: 0;
     display: flex; align-items: center;
-
-
 }
 
 #modal-window {
@@ -313,6 +289,8 @@ hr {
     padding: 20px;
     margin: 0 auto;
 }
+
+/* Scrollbar behavior */
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -346,131 +324,4 @@ hr {
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
-}
-
-.alarm {
-    width: 100%;
-    height: 48px;
-    background-color: #222222;
-    padding: 5px;
-    margin-top: 10px;
-}
-
-#power-budget-scaleable-wrapper {
-    position: absolute;
-  top: 50px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #1F4D93;
-  border: 1px solid black;
-  overflow: hidden;
-}
-
-#power-budget-canvas {
-    width: 1600px;
-    height: 600px;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transform-origin: center center;
-    border: 1px solid red;
-}
-
-#power-budget-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url("../img/powerBudgetOverlay.png") no-repeat;
-    background-size: contain;
-}
-
-#power-budget-boat {
-    position: absolute;
-    top: 40px;
-    bottom: 40px;
-    left: 240px;
-    right: 10px;
-    background: url("../img/powerBudgetBg.png") no-repeat;
-    background-size: contain;
-}
-
-.power-budget-box {
-    position: absolute;
-    background: #444444;
-    border: 2px solid #333333;
-    padding: 10px;
-}
-
-.power-budget-box:hover {
-    background: #555555;
-}
-
-#power-budget-gearbox {
-    top: 225px;
-    left: 200px;
-    width: 150px;
-    height: 150px;
-}
-#power-budget-motor {
-    top: 225px;
-    left: 375px;
-    width: 150px;
-    height: 150px;
-}
-#power-budget-prop {
-    top: 225px;
-    left: 20px;
-    width: 150px;
-    height: 150px;
-
-}
-#power-budget-motor-controller {
-        top: 225px;
-        left: 575px;
-        width: 250px;
-        height: 150px;
-}
-#power-budget-battery {
-    top: 350px;
-    left:850px;
-    width:300px;
-    height:150px;
-
-}
-#power-budget-solar-charger {
-    top: 100px;
-    left:750px;
-    width:350px;
-    height:150px;
-
-}
-#power-budget-solar-panel {
-
-        top: 100px;
-        left:1200px;
-        width:250px;
-        height:400px;
-
-}
-
-.power-budget-outline {
-    border: 4px solid rgba(0,255,0,0.5);
-    color: rgba(0,255,0,1);
-    position: absolute;
-    padding: 5px;
-    text-align: center;
-    pointer-events: none;
-
-}
-
-#power-budget-outline-drivetrain {
-
-        top: 175px;
-        left: 0px;
-        width: 550px;
-        height: 250px;
 }

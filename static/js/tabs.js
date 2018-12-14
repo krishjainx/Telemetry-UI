@@ -1,5 +1,14 @@
+//////////////////////////////////////////////////////////
+// Tab manager
+// Handles a simple tab system for the telemetry.
+// Tabs are hidden and shown using CSS, but all tabs are
+// always loaded.
+// Requires jQuery.
+//////////////////////////////////////////////////////////
+
 var currentTab = "";
 
+// On page load, set up the tab system
 $(function(){
     // Set the current tab to default
     setTab("dashboard");
@@ -12,14 +21,12 @@ $(function(){
     })
 });
 
-
+// Changes tabs to the tab specified.
 function setTab(tab){
     if (tab == currentTab){
-        console.log("ignoring, already on tab "+tab);
         return;
     } else {
         currentTab = tab;
-        console.log("Switched to tab "+tab);
     }
 
     // Set all the tabs to inactive and set the active tab
@@ -30,3 +37,7 @@ function setTab(tab){
     $(".tab-pane").hide();
     $("#"+tab+"-tab-pane").show();
 }
+
+//////////////////////////////////////////////////////////
+// End of File
+//////////////////////////////////////////////////////////

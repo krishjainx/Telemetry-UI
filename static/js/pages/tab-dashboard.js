@@ -1,6 +1,7 @@
 
 var dashboardChartTop;
 var dashboardChartBottom;
+var chartBorderWidth = 1.5;
 
 Chart.defaults.global.plugins.streaming = {
     duration: 10000,
@@ -32,7 +33,7 @@ function setupChartTop(){
                 fill: false,
                 pointRadius: 0,
                 lineTension: 0,
-                borderWidth:2,
+                borderWidth:chartBorderWidth,
                 yAxisID: "y-axis-left"
             },{
                 data: [],
@@ -41,7 +42,7 @@ function setupChartTop(){
                 fill: false,
                 pointRadius: 0,
                 lineTension: 0,
-                borderWidth:2,
+                borderWidth:chartBorderWidth,
                 yAxisID: "y-axis-right"
             }]
         },
@@ -107,7 +108,7 @@ function setupChartBottom(){
                 fill: false,
                 pointRadius: 0,
                 lineTension: 0,
-                borderWidth:2,
+                borderWidth:chartBorderWidth,
                 yAxisID: "y-axis-left"
             },{
                 data: [],
@@ -116,7 +117,7 @@ function setupChartBottom(){
                 fill: false,
                 pointRadius: 0,
                 lineTension: 0,
-                borderWidth:2,
+                borderWidth:chartBorderWidth,
                 yAxisID: "y-axis-left"
             },{
                 data: [],
@@ -125,7 +126,7 @@ function setupChartBottom(){
                 fill: false,
                 pointRadius: 0,
                 lineTension: 0,
-                borderWidth:2,
+                borderWidth:chartBorderWidth,
                 yAxisID: "y-axis-right"
             }]
         },

@@ -30,6 +30,7 @@
     position: absolute;
     padding: 10px;
     text-align: center;
+    overflow: hidden;
 }
 
 .dashboardIndicator h1 {

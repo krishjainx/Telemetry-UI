@@ -183,6 +183,30 @@ class TelemetryServer {
         return numAlarms;
     }
 
+    // Gets the number of valid data points
+    getNumValidDataPoints(){
+        var numDataPoints = 0;
+        for (var dataPointKey in this.lastDataPoints.telemetry) {
+            if (this.lastDataPoints.telemetry.hasOwnProperty(dataPointKey)) {
+                if (this.lastDataPoints.telemetry[dataPointKey].current != null){
+                    numDataPoints++;
+                }
+            }
+        }
+        return numDataPoints;
+    }
+
+    // Gets the number of data points
+    getNumDataPoints(){
+        var numDataPoints = 0;
+        for (var dataPointKey in this.lastDataPoints.telemetry) {
+            if (this.lastDataPoints.telemetry.hasOwnProperty(dataPointKey)) {
+                numDataPoints++;
+            }
+        }
+        return numDataPoints;
+    }
+
     addStatsCallback(func){
         this.statsCallbacks.push(func);
     }

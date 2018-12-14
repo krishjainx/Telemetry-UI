@@ -97,7 +97,7 @@ hr {
 
 #main-panel {
     position: absolute;
-    left: 220px;
+    left: 270px;
     right: 2px;
     top: 68px;
     bottom: 30px;
@@ -115,7 +115,7 @@ hr {
 #side-panel {
     position: absolute;
     left: 2px;
-    width: 216px;
+    width: 266px;
     bottom: 30px;
     top: 42px;
 }
@@ -127,7 +127,7 @@ hr {
 
 #tab-panel {
     position: absolute;
-    left: 220px;
+    left: 270px;
     right: 2px;
     top: 42px;
     height: 27px;
@@ -201,7 +201,7 @@ hr {
     overflow: hidden;
     height: 1em;
     whitespace: nowrap;
-    max-width: 50px;
+    max-width: 150px;
 }
 
 

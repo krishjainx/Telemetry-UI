@@ -7,6 +7,9 @@ var chartX = 0;
 $(function(){
     setupChart1();
     setupChart2();
+    $("#dashboardAlarms").click(function(){
+        setTab("alarms");
+    });
 });
 
 function setupChart1(){

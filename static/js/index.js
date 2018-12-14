@@ -19,7 +19,8 @@ $(function(){
 
 Telemetry.addStatsCallback(function(){
     $("#status-messages").text("Status: "+Telemetry.getStat("numActiveDevices")+" active device(s)");
-    $("#status-data").text("("+Telemetry.getStat("numDataPoints")+" data points \/ "+Telemetry.getStat("numRadioPackets")+" packets)")
+    dataCoverageRatio = ((Telemetry.getNumValidDataPoints()/Telemetry.getNumDataPoints())*100.0).toFixed(1)
+    $("#status-data").text("("+Telemetry.getStat("numDataPoints")+" data points \/ "+Telemetry.getStat("numRadioPackets")+" packets / "+dataCoverageRatio+"% coverage)")
     if (Telemetry.getStat("hasRadio") == "True") {
         $("#status-radio").text("Radio Link Established");
     } else {
@@ -54,12 +55,6 @@ function setupStatusBar(){
     $(".status-bar-toggle").click(function(){
         statusBarSetState($(this), $(this).text() == "hide");
     });
-    statusBarSetState($("#status-bar-toggle-gps"),true)
-    statusBarSetState($("#status-bar-toggle-gyro"),true)
-    statusBarSetState($("#status-bar-toggle-alltrax"),true)
-    statusBarSetState($("#status-bar-toggle-vesc"),true)
-    statusBarSetState($("#status-bar-toggle-battery"),true)
-    statusBarSetState($("#status-bar-toggle-throttle"),true)
 }
 
 function statusBarSetState(object, state){

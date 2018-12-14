@@ -14,6 +14,44 @@ $(function(){
         $(this).text("---");
     });
 
+
+    // Set up chart options dialog
+    $("#chartOptions").click(function(){
+        showModal("Display Options",`
+        <p style="position: relative; float: left;">Chart Display Interval:</p>
+        <select id="chartDisplayInterval">
+          <option value="1000">1 second</option>
+          <option value="10000">10 seconds</option>
+          <option value="30000">30 seconds</option>
+          <option value="60000">1 minute</option>
+        </select>
+        <br><br>
+        <hr>
+        <div id="closeOptions" class="button">Close</div>
+        `);
+        $('#chartDisplayInterval').val(dashboardChartTop.options.plugins.streaming.duration);
+
+        $("#closeOptions").click(function(){
+            hideModal();
+        });
+
+        // Set up chart display interval option
+        $("#chartDisplayInterval").change(function(){
+            timeInterval = $(this).val();
+            console.log("Changing time interval to "+timeInterval+"ms");
+            // Set chart setting for duration interval
+            dashboardChartTop.options.plugins.streaming.duration =timeInterval;
+            dashboardChartBottom.options.plugins.streaming.duration =timeInterval;
+            // Set chart setting for amount of data to save (add a small buffer beyond display).
+            dashboardChartTop.options.plugins.streaming.ttl =timeInterval + 1000;
+            dashboardChartBottom.options.plugins.streaming.ttl =timeInterval + 1000;
+            dashboardChartTop.update();
+            dashboardChartBottom.update();
+        });
+    })
+
+
+
     setupStatusBar();
 });
 

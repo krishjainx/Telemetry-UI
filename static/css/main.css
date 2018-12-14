@@ -56,6 +56,29 @@ hr {
     margin-bottom: 8px;
 }
 
+.button {
+  background-color: #222222;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  border-radius:5px;
+  border: 1px solid #222222;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.button * {
+    cursor: pointer;
+}
+
 .panel {
     display: block;
     position: absolute;
@@ -288,6 +311,26 @@ hr {
     border: 1px solid #565656;
     padding: 20px;
     margin: 0 auto;
+}
+
+#modal-overlay select {
+    position: relative;
+    float: right;
+    min-width: 150px;
+}
+
+#chartOptions {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+}
+
+#closeOptions {
+    padding:10px;
+    float: right;
+    width:150px;
 }
 
 /* Scrollbar behavior */

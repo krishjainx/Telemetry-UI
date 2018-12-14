@@ -4,7 +4,7 @@ var dashboardChartBottom;
 
 Chart.defaults.global.plugins.streaming = {
     duration: 10000,
-    ttl:25000,
+    ttl:11000,
     delay:500,
     refresh:100
 }
@@ -17,7 +17,6 @@ $(function(){
         setTab("alarms");
     });
 });
-
 
 function setupChartTop(){
     var ctx = document.getElementById("dashboardChart1").getContext('2d');

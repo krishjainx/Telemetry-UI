@@ -1,21 +1,28 @@
 
-var dashboardChart;
-var dashboardChart2;
-var chartX = 0;
+var dashboardChartTop;
+var dashboardChartBottom;
 
+Chart.defaults.global.plugins.streaming = {
+    duration: 10000,
+    ttl:25000,
+    delay:500,
+    refresh:100
+}
+Chart.defaults.global.defaultFontFamily = '"UbuntuMono",sans-serif';
 
 $(function(){
-    setupChart1();
-    setupChart2();
+    setupChartTop();
+    setupChartBottom();
     $("#dashboardAlarms").click(function(){
         setTab("alarms");
     });
 });
 
-function setupChart1(){
+
+function setupChartTop(){
     var ctx = document.getElementById("dashboardChart1").getContext('2d');
     data = []
-    dashboardChart = new Chart(ctx, {
+    dashboardChartTop = new Chart(ctx, {
         type: 'line',
         data: {
             labels: [],
@@ -25,84 +32,184 @@ function setupChart1(){
                 borderColor: "#ffff00",
                 fill: false,
                 pointRadius: 0,
-                cubicInterpolationMode: "monotone"
+                lineTension: 0,
+                borderWidth:2,
+                yAxisID: "y-axis-left"
             },{
                 data: [],
                 label: "Battery Current",
                 borderColor: "#00ffff",
                 fill: false,
-                pointRadius: 0
-            },{
-                data: [],
-                label: "Motor Temp",
-                borderColor: "#00ff002",
-                fill: false,
-                pointRadius: 0
+                pointRadius: 0,
+                lineTension: 0,
+                borderWidth:2,
+                yAxisID: "y-axis-right"
             }]
         },
         options: {
             maintainAspectRatio: false,
-            steppedLine: false,
-            elements: {
-                line: {
-                    tension: 0, // disables bezier curves
+            scales: {
+                xAxes: [{
+                    type: 'realtime',
+                    ticks: {
+                        minRotation: 0,
+                        maxRotation: 0
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Battery Voltage (Volts)',
+                        fontFamily: "Ubuntu"
+                    },
+                    position: "left",
+                    id: "y-axis-left",
+                    ticks: {
+                        beginAtZero: true,
+                        suggestedMax: 40
+                    }
+                },{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Battery Current (Amps)',
+                        fontFamily: "Ubuntu"
+                    },
+                    position: "right",
+                    id: "y-axis-right",
+                    ticks: {
+                        beginAtZero: false,
+                        suggestedMin: -10,
+                        suggestedMax: 0,
+                        reverse:true
+                    }
+                }]
+            },
+            tooltips: {enabled: false},
+            hover: {mode: null},
+            legend: {
+                labels: {
+                    fontFamily: "'Ubuntu','sans-serif'"
                 }
             }
         }
     });
 }
-function setupChart2(){
+function setupChartBottom(){
     var ctx = document.getElementById("dashboardChart2").getContext('2d');
     data = []
-    dashboardChart2 = new Chart(ctx, {
+    dashboardChartBottom = new Chart(ctx, {
         type: 'line',
         data: {
             labels: [],
             datasets: [{
                 data: [],
                 label: "Motor RPM",
-                borderColor: "#ff00ff",
+                borderColor: "#4286f4",
                 fill: false,
-                pointRadius: 0
+                pointRadius: 0,
+                lineTension: 0,
+                borderWidth:2,
+                yAxisID: "y-axis-left"
+            },{
+                data: [],
+                label: "Prop RPM",
+                borderColor: "#414ff4",
+                fill: false,
+                pointRadius: 0,
+                lineTension: 0,
+                borderWidth:2,
+                yAxisID: "y-axis-left"
+            },{
+                data: [],
+                label: "GPS Speed",
+                borderColor: "#4cf441",
+                fill: false,
+                pointRadius: 0,
+                lineTension: 0,
+                borderWidth:2,
+                yAxisID: "y-axis-right"
             }]
         },
         options: {
             maintainAspectRatio: false,
-            steppedLine: false,
-            elements: {
-                line: {
-                    tension: 0, // disables bezier curves
+            scales: {
+                xAxes: [{
+                    type: 'realtime',
+                    ticks: {
+                        minRotation: 0,
+                        maxRotation: 0
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Speed (Rpm)',
+                        fontFamily: "Ubuntu"
+                    },
+                    position: "left",
+                    id: "y-axis-left",
+                    ticks: {
+                        beginAtZero: true,
+                        suggestedMax: 3500
+                    }
+                },{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Speed (mph)',
+                        fontFamily: "Ubuntu"
+                    },
+                    position: "right",
+                    id: "y-axis-right",
+                    ticks: {
+                        beginAtZero: true,
+                        suggestedMax:10
+                    }
+                }]
+            },
+            tooltips: {enabled: false},
+            hover: {mode: null},
+            legend: {
+                labels: {
+                    fontFamily: "Ubuntu"
                 }
             }
         }
     });
 }
+// Chart 1: battery voltage, battery current
+// Chart 2: motor rpm, prop rpm, gps speed
 
-function parseChartData(key, value){
-    chartX++;
-    if (key == "bmvVoltage"){
-        addData(dashboardChart, 0,chartX,value);
-    }
-    if (key == "bmvCurrent"){
-        addData(dashboardChart, 1,chartX,value);
-    }
-    if (key == "motorRpm"){
-        addData(dashboardChart2,0,chartX,value);
-    }
-    if (key == "motorTemp"){
-        addData(dashboardChart,2,chartX,value);
-    }
-}
+Telemetry.addDataPointCallback("bmvVoltage",function(){
+    dashboardChartTop.data.datasets[0].data.push({
+        x: Date.now(),
+        y: Telemetry.get("bmvVoltage")
+      });
+});
 
-var maxLength = 20;
-function addData(chart, datasetIndex, label, data) {
-    if (chart.data.labels.length > maxLength){
-        chart.data.labels.shift()
-    }
-    if (chart.data.datasets[datasetIndex].data.length > maxLength){
-        chart.data.datasets[datasetIndex].data.shift()
-    }
-    chart.data.labels.push(label);
-    chart.data.datasets[datasetIndex].data.push(data);
-    chart.update();
-}
+Telemetry.addDataPointCallback("bmvCurrent",function(){
+    dashboardChartTop.data.datasets[1].data.push({
+        x: Date.now(),
+        y: Telemetry.get("bmvCurrent")
+      });
+});
+
+Telemetry.addDataPointCallback("motorRpm",function(){
+    dashboardChartBottom.data.datasets[0].data.push({
+        x: Date.now(),
+        y: Telemetry.get("motorRpm")
+      });
+});
+
+Telemetry.addDataPointCallback("propRpm",function(){
+    dashboardChartBottom.data.datasets[1].data.push({
+        x: Date.now(),
+        y: Telemetry.get("propRpm")
+      });
+});
+
+Telemetry.addDataPointCallback("gpsSpeed",function(){
+    dashboardChartBottom.data.datasets[2].data.push({
+        x: Date.now(),
+        y: Telemetry.get("gpsSpeed")
+      });
+});

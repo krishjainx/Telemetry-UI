@@ -34,9 +34,9 @@ Telemetry.addDataCallback(function(){
         for (key in lastDataPoints[source]){
             // Update live divs with the data points
             var combinedKey = source+"\\."+key;
-            var current = lastDataPoints[source][key].current;
-            var min = lastDataPoints[source][key].min;
-            var max = lastDataPoints[source][key].max;
+            var current = Telemetry.round(lastDataPoints[source][key].current,2);
+            var min = Telemetry.round(lastDataPoints[source][key].min,2);
+            var max = Telemetry.round(lastDataPoints[source][key].max,2);
             if (current == null){ current = "---"; }
             if (min == null){ min = "---"; }
             if (max == null){ max = "---"; }

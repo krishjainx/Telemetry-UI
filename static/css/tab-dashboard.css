@@ -7,13 +7,13 @@
     left: 0;
     top:0;
     position: relative;
+    border-bottom: 5px solid #323232;
 }
 
 .dashboardChartPane2 {
     display: block;
     background-color: #222222;
     height: 50%;
-    margin-top: 5px;
     margin-right: 200px;
     left: 0;
     bottom:0;
@@ -45,7 +45,7 @@
 }
 
 .dashboardAlarms * {
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 .dashboardAlarmsActive {

@@ -15,7 +15,7 @@ function updateAlarms(){
     alarms = Telemetry.getAllAlarms();
     for (var alarmKey in alarms) {
         if (alarms.hasOwnProperty(alarmKey)) {
-            $("#alarm-"+alarmKey).html("<h3>"+alarmKey+"</h3><span>state = "+alarms[alarmKey].state+", value = ["+alarms[alarmKey].value+"], alarm range = ["+alarms[alarmKey].range_min+","+alarms[alarmKey].range_max+"]</span>");
+            $("#alarm-"+alarmKey).html("<h3>"+alarmKey+"</h3><span>state = "+alarms[alarmKey].state+", value = ["+Telemetry.round(alarms[alarmKey].value,4)+"], alarm range = ["+alarms[alarmKey].range_min+","+alarms[alarmKey].range_max+"]</span>");
             if (alarms[alarmKey].state == true){
                 $("#alarm-"+alarmKey).removeClass("alarm-inactive").addClass("alarm-active");
             } else {

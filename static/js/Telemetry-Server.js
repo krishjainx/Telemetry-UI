@@ -120,6 +120,15 @@ class TelemetryServer {
       }, 250);
     }
 
+    // Rounds a data point if it's a number
+    round(inputNumber, decimals){
+        if (isNaN(inputNumber) | inputNumber == null){
+            return inputNumber;
+        } else {
+            return Number(Math.round(inputNumber+'e'+decimals)+'e-'+decimals);
+        }
+    }
+
     // Gets the latest value for a data point. Returns NULL if the data point is expired.
     get(dataPointName){
         if (dataPointName in this.lastDataPoints.telemetry){
@@ -280,8 +289,8 @@ class TelemetryServer {
             // Call the callbacks for this data point, if they exist
             if (source == "telemetry"){
                 if (key in this.dataPointCallbacks){
-                    for (var func in this.dataPointCallbacks[key]){
-                        func.call();
+                    for (var i = 0; i < this.dataPointCallbacks[key].length; i++){
+                        this.dataPointCallbacks[key][i].call();
                     }
                 }
             }

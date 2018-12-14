@@ -29,7 +29,7 @@
     box-sizing: border-box;
     user-select: none;
     cursor: default;
-    font-family: "Ubuntu";
+    font-family: "Ubuntu",sans-serif;
 }
 
 html, body {

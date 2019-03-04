@@ -1,0 +1,11 @@
+
+.throttleChartPane {
+    display: block;
+    background-color: #222222;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    position: absolute;
+    border-bottom: 5px solid #323232;
+}

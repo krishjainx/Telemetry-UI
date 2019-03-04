@@ -13,6 +13,8 @@
         <link rel="stylesheet" type="text/css" href="static/css/tab-drivetrain.css">
         <link rel="stylesheet" type="text/css" href="static/css/tab-gps.css">
         <link rel="stylesheet" type="text/css" href="static/css/tab-alarms.css">
+        <link rel="stylesheet" type="text/css" href="static/css/tab-analytics.css">
+        <link rel="stylesheet" type="text/css" href="static/css/tab-throttle.css">
 
         <!-- Load JS Libraries -->
         <script>window.$ = window.jQuery = require('jquery');</script>
@@ -34,6 +36,8 @@
         <script src="static/js/pages/tab-drivetrain.js" type="text/javascript"></script>
         <script src="static/js/pages/tab-gps.js" type="text/javascript"></script>
         <script src="static/js/pages/tab-power.js" type="text/javascript"></script>
+        <script src="static/js/pages/tab-analytics.js" type="text/javascript"></script>
+        <script src="static/js/pages/tab-throttle.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -91,6 +95,9 @@
                     <div class="status-bar-toggle"></div>
                     <h1>Throttle</h1>
                     <p>throttle<span class="data-point-raw" id="telemetry.throttle"></span></p>
+                    <p>throttleMode<span class="data-point-raw" id="telemetry.throttleMode"></span></p>
+                    <p>throttleInput<span class="data-point-raw" id="telemetry.throttleInput"></span></p>
+                    <p>throttleCurrentTarget<span class="data-point-raw" id="telemetry.throttleCurrentTarget"></span></p>
                 </div>
                 <div class="status-pane">
                     <div class="status-bar-toggle"></div>
@@ -155,6 +162,8 @@
             <div id="drivetrain-tab" class="tab tab-inactive">Drivetrain</div>
             <div id="gps-tab" class="tab tab-inactive">GPS</div>-->
             <div id="alarms-tab" class="tab tab-inactive">Alarms</div>
+            <div id="analytics-tab" class="tab tab-inactive">Analytics</div>
+            <div id="throttle-tab" class="tab tab-inactive">Throttle</div>
             <!--
             <div id="controls-tab" class="tab tab-inactive">Controls</div>
         -->
@@ -237,6 +246,17 @@
                     <div id="alarm-container">
                         <br>
                         <span id="alarm-status">Retrieving Alarm Data...</span>
+                    </div>
+                </div>
+                <div id="analytics-tab-pane" class="tab-pane">
+                    <h1>Race Analytics</h1>
+                    <div class="analyticsChartPane1">
+                        <canvas id="analyticsChart1"></canvas>
+                    </div>
+                </div>
+                <div id="throttle-tab-pane" class="tab-pane">
+                    <div class="throttleChartPane">
+                        <canvas id="throttleChart"></canvas>
                     </div>
                 </div>
                 <div id="controls-tab-pane" class="tab-pane">

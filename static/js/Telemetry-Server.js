@@ -39,8 +39,10 @@ Array.prototype.remove = function() {
 };
 
 class TelemetryServer {
-    constructor(ip){
+    constructor(ip,port){
         this.ip = ip;
+        this.port = port;
+        this.address = "http://" + this.ip + ":" + this.port;
         this.isPaused = false;
 
         // Used to store callback functions for data points
@@ -66,7 +68,7 @@ class TelemetryServer {
         // Call web requests for live data and statistics
         var telemetryInstance = this;
         setInterval(function() {
-            $.getJSON("http://localhost:5000/live", function(data){
+            $.getJSON(telemetryInstance.address+"/live", function(data){
                 for (var key in data) {
                     if (data.hasOwnProperty(key)) {
                         telemetryInstance._receiveDataPoint("telemetry",key,data[key]);
@@ -86,7 +88,7 @@ class TelemetryServer {
                 showModal("Telemetry Offline","Connecting to the Telemetry Server. Please wait...<br><br> Please ensure that the telemetry server is running.");
                 telemetryInstance.shownModal = true;
             });
-            $.getJSON("http://localhost:5000/stats", function(data){
+            $.getJSON(telemetryInstance.address+"/stats", function(data){
                 for (var key in data) {
                     if (data.hasOwnProperty(key)) {
                         var dataPacket = {}
@@ -99,7 +101,7 @@ class TelemetryServer {
                     telemetryInstance.statsCallbacks[i].call();
                 }
             }).fail(function(){});
-            $.getJSON("http://localhost:5000/alarms", function(data){
+            $.getJSON(telemetryInstance.address+"/alarms", function(data){
                 telemetryInstance.alarms = data;
                 // Call all of the alarm callbacks
                 // For now, alarm callbacks are global and don't correspond to individual alarms

@@ -4,7 +4,7 @@
 //////////////////////////////////////////////////////////
 
 // Create an instance of the Telemetry system connected to the local machine
-var Telemetry = new TelemetryServer("localhost")
+var Telemetry = new TelemetryServer("localhost",5000)
 
 // On page initialization
 $(function(){
@@ -42,11 +42,14 @@ $(function(){
             // Set chart setting for duration interval
             dashboardChartTop.options.plugins.streaming.duration =timeInterval;
             dashboardChartBottom.options.plugins.streaming.duration =timeInterval;
+            throttleChart.options.plugins.streaming.duration =timeInterval;
             // Set chart setting for amount of data to save (add a small buffer beyond display).
             dashboardChartTop.options.plugins.streaming.ttl =timeInterval + 1000;
             dashboardChartBottom.options.plugins.streaming.ttl =timeInterval + 1000;
+            throttleChart.options.plugins.streaming.ttl = timeInterval + 1000;
             dashboardChartTop.update();
             dashboardChartBottom.update();
+            throttleChart.update();
         });
     })
 

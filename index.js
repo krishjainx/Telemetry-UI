@@ -8,8 +8,8 @@ let win
 
 function createWindow () {
     // Create the browser window.
-    var width = 800;
-    var height = 600;
+    var width = 1024;
+    var height = 768;
     win = new BrowserWindow({width: width, height: height, minWidth: width, minHeight: height})
 
     win.loadFile('index.html')

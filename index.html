@@ -76,13 +76,19 @@
                 <div class="status-pane">
                     <div class="status-bar-toggle"></div>
                     <h1>Battery</h1>
-                    <p>bmvVoltage<span class="data-point-raw" id="telemetry.bmvVoltage"></span></p>
-                    <p>bmvAuxVoltage<span class="data-point-raw" id="telemetry.bmvAuxVoltage"></span></p>
-                    <p>bmvCurrent<span class="data-point-raw" id="telemetry.bmvCurrent"></span></p>
-                    <p>bmvPower<span class="data-point-raw" id="telemetry.bmvPower"></span></p>
-                    <p>bmvStateOfCharge<span class="data-point-raw" id="telemetry.bmvStateOfCharge"></span></p>
-                    <p>bmvTimeRemaining<span class="data-point-raw" id="telemetry.bmvTimeRemaining"></span></p>
-                    <p>bmvConsumedAh<span class="data-point-raw" id="telemetry.bmvConsumedAh"></span></p>
+                    <p>batteryVoltage<span class="data-point-raw" id="telemetry.batteryVoltage"></span></p>
+                    <p>batteryCurrent<span class="data-point-raw" id="telemetry.batteryCurrent"></span></p>
+                    <p>batteryPower<span class="data-point-raw" id="telemetry.batteryPower"></span></p>
+                    <p>batteryStateOfCharge<span class="data-point-raw" id="telemetry.batteryStateOfCharge"></span></p>
+                    <p>batteryTimeRemaining<span class="data-point-raw" id="telemetry.batteryTimeRemaining"></span></p>
+                    <p>batteryConsumedAh<span class="data-point-raw" id="telemetry.batteryConsumedAh"></span></p>
+                </div>
+                <div class="status-pane">
+                    <div class="status-bar-toggle"></div>
+                    <h1>Solar Chargers</h1>
+                    <p>solarChargerCurrent1<span class="data-point-raw" id="telemetry.solarChargerCurrent1"></span></p>
+                    <p>solarChargerCurrent2<span class="data-point-raw" id="telemetry.solarChargerCurrent2"></span></p>
+                    <p>solarChargerCurrentTotal<span class="data-point-raw" id="telemetry.solarChargerCurrentTotal"></span></p>
                 </div>
                 <div class="status-pane">
                     <div class="status-bar-toggle"></div>
@@ -99,6 +105,7 @@
                     <p>throttleInput<span class="data-point-raw" id="telemetry.throttleInput"></span></p>
                     <p>throttleCurrentTarget<span class="data-point-raw" id="telemetry.throttleCurrentTarget"></span></p>
                 </div>
+                <!--
                 <div class="status-pane">
                     <div class="status-bar-toggle"></div>
                     <h1>Battery (Cells & Buses)</h1>
@@ -116,7 +123,7 @@
                     <p>busTemp2<span class="data-point-raw" id="telemetry.batteryBusTemp2"></span></p>
                     <p>busTemp3<span class="data-point-raw" id="telemetry.batteryBusTemp3"></span></p>
                     <p>busTemp4<span class="data-point-raw" id="telemetry.batteryBusTemp4"></span></p>
-                </div>
+                </div>-->
                 <div class="status-pane">
                     <div class="status-bar-toggle"></div>
                     <h1>Motor Controller</h1>
@@ -131,23 +138,19 @@
                 </div>
                 <div class="status-pane">
                     <div class="status-bar-toggle"></div>
-                    <h1>Gyro</h1>
-                    <p>trimAngle<span class="data-point-raw" id="telemetry.gyroTrimAngle"></span></p>
-                    <p>rollAngle<span class="data-point-raw" id="telemetry.gyroRollAngle"></span></p>
-                    <p>yawAngle<span class="data-point-raw" id="telemetry.gyroYawAngle"></span></p>
+                    <h1>IMU</h1>
+                    <p>imuPitch<span class="data-point-raw" id="telemetry.imuPitch"></span></p>
+                    <p>imuRoll<span class="data-point-raw" id="telemetry.imuRoll"></span></p>
                 </div>
                 <div class="status-pane">
                     <div class="status-bar-toggle"></div>
                     <h1>GPS</h1>
-                    <p>timestamp<span class="data-point-raw" id="telemetry.gpsTimestamp"></span></p>
-                    <p>speed<span class="data-point-raw" id="telemetry.gpsSpeed"></span></p>
-                    <p>heading<span class="data-point-raw" id="telemetry.gpsHeading"></span></p>
-                    <p>latitude<span class="data-point-raw" id="telemetry.gpsLatitude"></span></p>
-                    <p>longitude<span class="data-point-raw" id="telemetry.gpsLongitude"></span></p>
-                    <p>numSatellites<span class="data-point-raw" id="telemetry.gpsNumSatellites"></span></p>
-                    <p>usbGpsLatitude<span class="data-point-raw" id="telemetry.gpsLatitude"></span></p>
-                    <p>usbGpsLongitude<span class="data-point-raw" id="telemetry.gpsLongitude"></span></p>
-                    <p>usbGpsNumSatellites<span class="data-point-raw" id="telemetry.gpsNumSatellites"></span></p>
+                    <p>gpsFix<span class="data-point-raw" id="telemetry.gpsFix"></span></p>
+                    <p>gpsNumSatellites<span class="data-point-raw" id="telemetry.gpsNumSatellites"></span></p>
+                    <p>gpsLatitude<span class="data-point-raw" id="telemetry.gpsLatitude"></span></p>
+                    <p>gpsLongitude<span class="data-point-raw" id="telemetry.gpsLongitude"></span></p>
+                    <p>gpsHeading<span class="data-point-raw" id="telemetry.gpsHeading"></span></p>
+                    <p>gpsSpeedKnots<span class="data-point-raw" id="telemetry.gpsSpeedKnots"></span></p>
                 </div>
             </div>
         </div>
@@ -185,15 +188,15 @@
                     </div>
                     <div class="dashboardVoltage dashboardIndicator">
                         <h3>Voltage</h3>
-                        <h1><span id="telemetry.bmvVoltage">---</span> V</h1>
-                        <span>min: <span id="telemetry.bmvVoltage.min">---</span></span> /
-                        <span>max: <span id="telemetry.bmvVoltage.max">---</span></span>
+                        <h1><span id="telemetry.batteryVoltage">---</span> V</h1>
+                        <span>min: <span id="telemetry.batteryVoltage.min">---</span></span> /
+                        <span>max: <span id="telemetry.batteryVoltage.max">---</span></span>
                     </div>
                     <div class="dashboardCurrent dashboardIndicator">
                         <h3>Current</h3>
-                        <h1><span id="telemetry.bmvCurrent">---</span> A</h1>
-                        <span>min: <span id="telemetry.bmvCurrent.min">---</span></span> /
-                        <span>max: <span id="telemetry.bmvCurrent.max">---</span></span>
+                        <h1><span id="telemetry.batteryCurrent">---</span> A</h1>
+                        <span>min: <span id="telemetry.batteryCurrent.min">---</span></span> /
+                        <span>max: <span id="telemetry.batteryCurrent.max">---</span></span>
                     </div>
                     <div class="dashboardRpm dashboardIndicator">
                         <h3>Motor RPM</h3>

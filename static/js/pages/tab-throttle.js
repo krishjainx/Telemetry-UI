@@ -118,7 +118,7 @@ Telemetry.addDataPointCallback("throttleCurrentTarget",function(){
       });
 });
 
-Telemetry.addDataPointCallback("bmvCurrent",function(){
+Telemetry.addDataPointCallback("batteryCurrent",function(){
     throttleChart.data.datasets[3].data.push({
         x: Date.now(),
         y: Telemetry.get("bmvCurrent")

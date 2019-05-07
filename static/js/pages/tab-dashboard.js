@@ -179,17 +179,17 @@ function setupChartBottom(){
 // Chart 1: battery voltage, battery current
 // Chart 2: motor rpm, prop rpm, gps speed
 
-Telemetry.addDataPointCallback("bmvVoltage",function(){
+Telemetry.addDataPointCallback("batteryVoltage",function(){
     dashboardChartTop.data.datasets[0].data.push({
         x: Date.now(),
-        y: Telemetry.get("bmvVoltage")
+        y: Telemetry.get("batteryVoltage")
       });
 });
 
-Telemetry.addDataPointCallback("bmvCurrent",function(){
+Telemetry.addDataPointCallback("batteryCurrent",function(){
     dashboardChartTop.data.datasets[1].data.push({
         x: Date.now(),
-        y: Telemetry.get("bmvCurrent")
+        y: Telemetry.get("batteryCurrent")
       });
 });
 

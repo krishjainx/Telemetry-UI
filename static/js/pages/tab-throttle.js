@@ -100,14 +100,14 @@ $(function(){
 Telemetry.addDataPointCallback("throttleInput",function(){
     throttleChart.data.datasets[0].data.push({
         x: Date.now(),
-        y: Telemetry.get("throttleInput")
+        y: ((Telemetry.get("throttleInput") / 255.0) * 100.0)
       });
 });
 
 Telemetry.addDataPointCallback("throttle",function(){
     throttleChart.data.datasets[1].data.push({
         x: Date.now(),
-        y: Telemetry.get("throttle")
+        y: ((Telemetry.get("throttle") / 255.0) * 100.0)
       });
 });
 

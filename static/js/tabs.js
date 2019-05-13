@@ -11,7 +11,7 @@ var currentTab = "";
 // On page load, set up the tab system
 $(function(){
     // Set the current tab to default
-    setTab("throttle");
+    setTab("dashboard");
 
     // Set a click listener for all tab objects
     $(".tab").click(function(){

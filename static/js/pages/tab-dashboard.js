@@ -6,7 +6,7 @@ var chartBorderWidth = 1.5;
 Chart.defaults.global.plugins.streaming = {
     duration: 10000,
     ttl:11000,
-    delay:500,
+    delay:0,
     refresh:100
 }
 Chart.defaults.global.defaultFontFamily = '"UbuntuMono",sans-serif';
@@ -207,9 +207,9 @@ Telemetry.addDataPointCallback("propRpm",function(){
       });
 });
 
-Telemetry.addDataPointCallback("gpsSpeed",function(){
+Telemetry.addDataPointCallback("gpsSpeedMph",function(){
     dashboardChartBottom.data.datasets[2].data.push({
         x: Date.now(),
-        y: Telemetry.get("gpsSpeed")
+        y: Telemetry.get("gpsSpeedMph")
       });
 });
